@@ -1,10 +1,12 @@
 import math
-import random as randint
+import random as rd
 
 class Grass:
     def __init__(self, Grille, prob_pousse, temps_repousse) :
         self.Grille = Grille
         self.herbe = []
+        self.prob_pousse = prob_pousse
+        self.temps_repousse = temps_repousse
         self.herbe_mangé = {}
     
     def initialisation(self) :
@@ -18,7 +20,7 @@ class Grass:
             else :
                 self.herbe.append((x,y))
                 C += 1
-                self.Grille.grille[x,y] = W
+                self.Grille.grille[x,y] = "G"
         
     def nouvelle_herbe(self) :
         for i in range(n) :
@@ -29,14 +31,16 @@ class Grass:
                     m = rd.uniform()
                         if m < prob_repousse :
                             self.append((i,j))
-                            self.Grille.grille[i,j] = G
+                            self.Grille.grille[i,j] = "G"
 
     def repousse_herbe(self) : #le faire tout à la fin car réinitialise direct pour le prochain
         for c in self.herbe_mangé :
             self.herbe_mangé[c] += 1
             if self.herbe_mangé = temps_repousse :
                 self.herbe.append(c)
-                self.Grille.grille[c[0], c[1]] = G
+                self.Grille.grille[c[0], c[1]] = "G"
+                del self.herbe_mangé[c]
+            
 
         
     
