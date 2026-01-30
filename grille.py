@@ -4,7 +4,7 @@ class Grille:
     def __init__(self, n) :
         self.taille = n
         self.grille = np.empty((n,n,2))
-        for ligne in self:
+        for ligne in self.grille:
             for case in ligne:
                 case[0] = animals()
                 case[1] = "."
@@ -33,5 +33,4 @@ class Grille:
                 else :
                     text += "."
             text += "\n"
-        print text
-                
+        print(text)
