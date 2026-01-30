@@ -10,29 +10,31 @@ class Grass:
     
     def initialisation(self, grille) :
         C = 0
-        nb_grass = math.floor(0.3*(len(grille))**2)
+        n = len(grille.matrice)
+        nb_grass = math.floor(0.3*(n)**2)
         while C < nb_grass :
-            x = rd.randint(0, len(grille))
-            y = rd.randint(0, len(self.grille))
+            x = rd.randint(0, n)
+            y = rd.randint(0, n)
             if (x,y) not in self.coord :
                 self.herbe.append((x,y))
                 C += 1
-                grille[x,y,1] = "#"
+                grille.matrice[x,y,1] = "#"
         
-    def nouvelle_herbe(self) : # juste avant repousse herbe
+    def nouvelle_herbe(self, grille) :
+        n = grille.taille
         for i in range(n) :
             for j in range(n) :
                 if (i,j) not in (self.herbe and self.herbe_mangé) :
                     m = rd.uniform()
                     if m < self.prob_repousse :
                         self.append((i,j))
-                        self.Grille.grille[i,j,1] = "#"
+                        grille.matrice[i,j,1] = "#"
 
     def mangé(self) : #juste après que les moutons ce sont déplacés
         for i in range(len(self.herbe)) :
             x = self.herbe[i][0]
             y = self.herbe[i][1]
-            if self.Grille.grille[x, y, 0] = "S" :
+            if grille.matrice[x, y, 0] == "S" :
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 

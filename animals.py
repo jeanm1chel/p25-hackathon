@@ -1,16 +1,15 @@
 import random as rd 
 import numpy as np
-grille=[]
 
 class Animals():
 
-    def __init__(self,grille):
+    def __init__(self):
         self.type="."
         self.position=(0,0)
         self.age=0
         self.energy=0
 
-    def move(self):
+    def move(self, grille):
         voisins=grille.voisins(self.position)
         if self.type=="W":
             if "S" in voisins:
@@ -26,7 +25,7 @@ class Animals():
             n=rd.randint(len(voisins))
             self.position=voisins[n].position
 
-    def eat_around(self):
+    def eat_around(self, grille):
         voisins=grille.voisins(self.position)
         if self.type=="W":
             for voisin in voisins:
@@ -36,11 +35,11 @@ class Animals():
             print("je suis un mouton je mange personne")
 
     
-    def eat(self, cible):
-        grille.grille[cible.position[0]][cible.position[1]]="."
+    def eat(self, cible, grille):
+        grille.matrice[cible.position[0]][cible.position[1]]="."
         self.energy+=rd.randint(30,40)
 
-    def reproduction(self):
+    def reproduction(self, grille):
         voisins=grille.voisins(self.position)
         if self.energy > 80:
             for voisin in voisins:
