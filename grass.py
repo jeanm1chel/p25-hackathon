@@ -13,12 +13,12 @@ class Grass:
         n = len(grille.matrice)
         nb_grass = math.floor(0.3*(n)**2)
         while C < nb_grass :
-            x = rd.randint(0, n)
-            y = rd.randint(0, n)
-            if (x,y) not in self.coord :
+            x = rd.randint(0, n-1)
+            y = rd.randint(0, n-1)
+            if (x,y) not in self.herbe :
                 self.herbe.append((x,y))
                 C += 1
-                grille.matrice[x,y,1] = "#"
+                grille.matrice[x][y][1] = "#"
         
     def nouvelle_herbe(self, grille) :
         n = grille.taille
@@ -28,7 +28,7 @@ class Grass:
                     m = rd.uniform()
                     if m < self.prob_repousse :
                         self.append((i,j))
-                        grille.matrice[i,j,1] = "#"
+                        grille.matrice[i][j][1] = "#"
 
     def mangé(self, grille) :
         for i in range(len(self.herbe)) :
@@ -38,12 +38,12 @@ class Grass:
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 
-    def repousse_herbe(self) : #le faire tout à la fin car réinitialise direct pour le prochain
+    def repousse_herbe(self, grille) : #le faire tout à la fin car réinitialise direct pour le prochain
         for c in self.herbe_mangé :
             self.herbe_mangé[c] += 1
             if self.herbe_mangé == self.temps_repousse :
                 self.herbe.append(c)
-                self.Grille.grille[c[0], c[1],1] = "#"
+                grille.matrice[c[0]][c[1]][1] = "#"
                 del self.herbe_mangé[c]
             
 

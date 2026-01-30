@@ -28,16 +28,19 @@ def chasse(grille):
 def vieillissement_et_mort(grille) :
     for ligne in grille.matrice :
         for case in ligne :
-            if case.type != "." :
+            if case[0].type != "." :
                 case[0].age += 1
                 if case[0].age == age_limite_loup and case[0].type == "W" :
                     case[0].type = "."
 
-#incrémenter age
-#MAJ herbe
-mouvements(grille) # mouton #loups
-chasse(grille) #loups
-vieillisment_et_mort(grille) #vérif morts
-#reprod
-grille.afficher() #affichage
-# vérif condition d'arrêt
+grass.initialisation(grille)
+
+for i in range(500):
+    #incrémenter age
+    #MAJ herbe
+    mouvements(grille) # mouton #loups
+    chasse(grille) #loups
+    vieillissement_et_mort(grille) #vérif morts
+    #reprod
+    grille.afficher() #affichage
+    # vérif condition d'arrêt
