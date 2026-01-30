@@ -67,6 +67,7 @@ for i in range(500):
     grass.nouvelle_herbe(grille)#MAJ herbe
     grass.repousse_herbe(grille)
     mouvements(grille) # mouton
+    grass.mangé(grille)
     vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) #incrémenter age  #vérif morts
     naissances(grille) #reprod
     afficher(grille, grille.taille) #affichage

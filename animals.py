@@ -19,6 +19,7 @@ class Animals():
                     if voisin.type=="S":
                         self.position=voisin.position
                         grille.matrice[voisin.position]=self
+                        self.energy += 30
                         grille.matrice[a][b][0] = Animals()
                         break
 
@@ -36,6 +37,7 @@ class Animals():
                 self.position = (x, y)
                 grille.matrice[x][y][0]=self
                 grille.matrice[a][b][0] = Animals()
+                self.energy += 10
 
             else :
                 n = rd.randint(0,len(voisins_h[0])-1)
