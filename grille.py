@@ -16,18 +16,24 @@ class Grille:
         return mat
 
 
-    def voisins(self, pos):
+    def voisins(self, pos, categorie):
+        if categorie == "herbe":
+            i = 1
+        elif categorie == "animaux":
+            i = 0
+        else :
+            i = 42 #génère erreur
         x,y = pos
         n = self.taille
         L = []
         if x > 0 :
-            L.append(self.matrice[x-1][y])
-        if x < n:
-            L.append(self.matrice[x+1][y])
+            L.append(self.matrice[x-1][y][i])
+        if x < n-1:
+            L.append(self.matrice[x+1][y][i])
         if y > 0:
-            L.append(self.matrice[x][y-1])
-        if y < n:
-            L.append(self.matrice[x][y+1])
+            L.append(self.matrice[x][y-1][i])
+        if y < n-1:
+            L.append(self.matrice[x][y+1][i])
         return L
     
     def afficher(self):

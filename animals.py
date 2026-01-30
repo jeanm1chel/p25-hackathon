@@ -10,7 +10,7 @@ class Animals():
         self.energy=0
 
     def move(self, grille):
-        voisins=grille.voisins(self.position)
+        voisins=grille.voisins(self.position, "animaux")
         if self.type=="W":
             if "S" in voisins:
                 for voisin in voisins:
@@ -19,14 +19,16 @@ class Animals():
                         grille.grille[voisin.position]=self
                         break
             else :
-                n=rd.randint(len(voisins))
-                self.position=voisins[n].position
-                grille.grille[voisin[n].position]=self
+                n=rd.randint(0, len(voisins)-1)
+                x, y = voisins[n][0].position
+                self.position = (x, y)
+                grille.matrice[x][y][0]=self
 
         if self.type=="S":
-            n=rd.randint(len(voisins))
-            self.position=voisins[n].position
-            grille.grille[voisins[n].position]=self
+            n=rd.randint(0,len(voisins)-1)
+            x, y = voisins[n][0].position
+            self.position = (x, y)
+            grille.matrice[x][y][0]=self
 
     def mort(self, grille):
         self.type="."
@@ -38,9 +40,9 @@ class Animals():
         voisins=grille.voisins(self.position)
         if self.type=="W":
             for voisin in voisins:
-                if voisin.type=="S":
-                    self.eat(voisin)
-                    voisin.mort(grille)
+                if voisin[0].type=="S":
+                    self.eat(voisin[0])
+                    voisin[0].mort(grille)
                 
         if self.type=="S":
             print("je suis un mouton je mange personne")
