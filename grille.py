@@ -1,4 +1,5 @@
 import numpy as np
+from animals import Animals
 
 class Grille:
     def __init__(self, n) :
@@ -6,7 +7,7 @@ class Grille:
         self.grille = np.empty((n,n,2))
         for ligne in self.grille:
             for case in ligne:
-                case[0] = animals()
+                case[0] = Animals()
                 case[1] = "."
     
     def voisin(self, pos):

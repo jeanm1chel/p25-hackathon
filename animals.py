@@ -1,10 +1,9 @@
 import random as rd 
 import numpy as np
-grille=[]
 
 class Animals():
 
-    def __init__(self,grille):
+    def __init__(self):
         self.type="."
         self.position=(0,0)
         self.age=0
