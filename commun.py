@@ -25,11 +25,6 @@ def mouvements(grille):
             for case in ligne:
                   case[0].move(grille)
 
-def chasse(grille):
-    for ligne in grille.matrice:
-            for case in ligne:
-                  case[0].eat_around(grille)
-
 def naissances(grille):
     for ligne in grille.matrice:
             for case in ligne:
@@ -69,8 +64,7 @@ for i in range(500):
     loss_energy(grille)
     grass.nouvelle_herbe(grille)#MAJ herbe
     grass.repousse_herbe(grille)
-    mouvements(grille) # mouton #loups
-    chasse(grille) #loups
+    mouvements(grille) # mouton
     vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) #incrémenter age  #vérif morts
     naissances(grille) #reprod
     grille.afficher() #affichage

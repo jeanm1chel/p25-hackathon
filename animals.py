@@ -23,8 +23,8 @@ class Animals():
                         break
 
             else :
-                n=rd.randint(0, len(voisins)-1)
-                x, y = voisins[n].position
+                n=rd.randint(0, len(voisins_a)-1)
+                x, y = voisins_a[n].position
                 self.position = (x, y)
                 grille.matrice[x][y][0]=self
                 grille.matrice[a][b][0] = Animals()
@@ -39,7 +39,7 @@ class Animals():
 
             else :
                 n = rd.randint(0,len(voisins_h[0])-1)
-                x, y = voisins_h[1][n][0], voisins_h[1][n][1]
+                x, y = voisins_h[0][n][0], voisins_h[0][n][1]
                 self.position = (x, y)
                 grille.matrice[x][y][0]=self
                 grille.matrice[a][b][0] = Animals()
@@ -52,7 +52,7 @@ class Animals():
         grille.matrice[x][y][0]=self
 
     def reproduction(self, grille):
-        voisins=grille.voisins(self.position, 'animaux')
+        voisins=grille.voisins_a(self.position)
         if self.type == "W":
             if self.energy > 80:
                 for voisin in voisins:

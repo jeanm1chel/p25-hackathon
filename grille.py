@@ -21,13 +21,13 @@ class Grille:
         n = self.taille
         L = []
         if x > 0 :
-            L.append(self.matrice[x-1][y][i])
-        if x < n-1:
-            L.append(self.matrice[x+1][y][i])
+            L.append(self.matrice[x-1][y][0])
+        if x < n-1 :
+            L.append(self.matrice[x+1][y][0])
         if y > 0:
-            L.append(self.matrice[x][y-1][i])
+            L.append(self.matrice[x][y-1][0])
         if y < n-1:
-            L.append(self.matrice[x][y+1][i])
+            L.append(self.matrice[x][y+1][0])
         return L
     
     def voisins_h(self, pos) :
