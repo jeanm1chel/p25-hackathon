@@ -25,9 +25,7 @@ class Grass:
     def nouvelle_herbe(self) :
         for i in range(n) :
             for j in range(n) :
-                if (i,j) in self.herbe :
-                    0 = 0
-                else :
+                if (i,j) not in self.herbe :
                     m = rd.uniform()
                     if m < self.prob_repousse :
                         self.append((i,j))
