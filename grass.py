@@ -23,11 +23,20 @@ class Grass:
     def nouvelle_herbe(self) :
         for i in range(n) :
             for j in range(n) :
-                if (i,j) not in self.herbe :
+                if (i,j) not in (self.herbe and self.herbe_mangé) :
                     m = rd.uniform()
                     if m < self.prob_repousse :
                         self.append((i,j))
                         self.Grille.grille[i,j,1] = "#"
+
+    def mangé(self) :
+        for i in range(len(self.herbe)) :
+            x = self.herbe[i][0]
+            y = self.herbe[i][1]
+            if self.Grille.grille[x, y, 0] = "S" :
+                self.herbe_mangé[(x,y)] = 0
+                self.herbe.pop(i)
+                
 
     def repousse_herbe(self) : #le faire tout à la fin car réinitialise direct pour le prochain
         for c in self.herbe_mangé :
