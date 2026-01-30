@@ -2,23 +2,23 @@ import math
 import random as rd
 
 class Grass:
-    def __init__(self, Grille, prob_pousse, temps_repousse) :
-        self.Grille = Grille #WTF
+    def __init__(self, prob_pousse, temps_repousse) :
         self.herbe = []
         self.prob_pousse = prob_pousse
         self.temps_repousse = temps_repousse
         self.herbe_mangé = {}
     
-    def initialisation(self) :
+    def initialisation(self, grille) :
         C = 0
-        nb_grass = math.floor(0.3*(len(self.grille))**2)
+        n = len(grille.matrice)
+        nb_grass = math.floor(0.3*(n)**2)
         while C < nb_grass :
-            x = rd.randint(0, len(self.grille))
-            y = rd.randint(0, len(self.grille))
+            x = rd.randint(0, n)
+            y = rd.randint(0, n)
             if (x,y) not in self.coord :
                 self.herbe.append((x,y))
                 C += 1
-                self.Grille.grille[x,y,1] = "#"
+                grille.matrice[x,y,1] = "#"
         
     def nouvelle_herbe(self, grille) :
         n = grille.taille
@@ -28,13 +28,13 @@ class Grass:
                     m = rd.uniform()
                     if m < self.prob_repousse :
                         self.append((i,j))
-                        self.Grille.grille[i,j,1] = "#"
+                        grille.matrice[i,j,1] = "#"
 
     def mangé(self) :
         for i in range(len(self.herbe)) :
             x = self.herbe[i][0]
             y = self.herbe[i][1]
-            if Grille.grille[x, y, 0] == "S" :
+            if grille.matrice[x, y, 0] == "S" :
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 

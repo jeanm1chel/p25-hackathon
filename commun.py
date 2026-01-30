@@ -11,17 +11,17 @@ prob_repousse = 0.05
 temps_repousse = 7
 
 grille = Grille(n)
-grass = Grass(grille, prob_repousse, temps_repousse)
+grass = Grass(prob_repousse, temps_repousse)
 
 def mouvements(grille):
-    for ligne in grille:
+    for ligne in grille.matrice:
             for case in ligne:
-                  move(case[0])
+                  case[0].move(grille)
 
 def chasse(grille):
-    for ligne in grille:
+    for ligne in grille.matrice:
             for case in ligne:
-                  eat_around(case[0])
+                  case[0].eat_around(grille)
 
 
 #incrémenter age

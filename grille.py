@@ -11,17 +11,18 @@ class Grille:
                 ligne.append([Animals(), "."])
             self.matrice.append(ligne)
     
-    def voisin(self, pos):
+    def voisins(self, pos):
         x,y = pos
+        n = self.taille
         L = []
         if x > 0 :
-            L.append(self[x-1, y])
+            L.append(self.matrice[x-1][y])
         if x < n:
-            L.append(self[x+1,y])
+            L.append(self.matrice[x+1][y])
         if y > 0:
-            L.append(self[x, y-1])
+            L.append(self.matrice[x][y-1])
         if y < n:
-            L.append(self[x, y+1])
+            L.append(self.matrice[x][y+1])
         return L
     
     def afficher(self):
