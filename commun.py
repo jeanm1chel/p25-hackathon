@@ -68,6 +68,7 @@ def loss_energy(grille) :
                 
 
 
+
 for i in range(500):
     loss_energy(grille)
     grass.nouvelle_herbe(grille)#MAJ herbe
