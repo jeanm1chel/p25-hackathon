@@ -38,12 +38,12 @@ class Grass:
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 
-    def repousse_herbe(self) : #le faire tout à la fin car réinitialise direct pour le prochain
+    def repousse_herbe(self, grille) : #le faire tout à la fin car réinitialise direct pour le prochain
         for c in self.herbe_mangé :
             self.herbe_mangé[c] += 1
             if self.herbe_mangé == self.temps_repousse :
                 self.herbe.append(c)
-                self.Grille.grille[c[0], c[1],1] = "#"
+                grille.matrice[c[0], c[1],1] = "#"
                 del self.herbe_mangé[c]
             
 
