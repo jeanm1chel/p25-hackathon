@@ -3,7 +3,7 @@ import math
 import random as rd
 import time
 
-from animals import Animals
+from animals import Animals, animals_initialize
 from grass import Grass
 from grille import Grille
 
@@ -17,6 +17,9 @@ nrj_loss_wolf = 2
 
 grille = Grille(n)
 grass = Grass(prob_pousse, temps_repousse)
+grass.initialisation(grille)
+grille.matrice= animals_initialize(grille.matrice)
+
 
 def mouvements(grille):
     for ligne in grille.matrice:
@@ -27,6 +30,19 @@ def chasse(grille):
     for ligne in grille.matrice:
             for case in ligne:
                   case[0].eat_around(grille)
+
+def naissances(grille):
+    for ligne in grille.matrice:
+            for case in ligne:
+                  case[0].reproduction(grille)
+
+def referendum(grille):
+    nb_vivants = 0
+    for ligne in grille.matrice:
+            for case in ligne:
+                if case[0].type != ".":
+                    nb_vivants += 1
+    return nb_vivants
 
 def vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) :
     for ligne in grille.matrice :
@@ -51,7 +67,6 @@ def loss_energy(grille) :
                     case[0].type -= nrj_loss_sheep
                 
 
-grass.initialisation(grille)
 
 
 for i in range(500):
@@ -61,7 +76,8 @@ for i in range(500):
     mouvements(grille) # mouton #loups
     chasse(grille) #loups
     vieillissement_et_mort(grille) #incrémenter age  #vérif morts
-    #reprod
+    naissances(grille) #reprod
     grille.afficher() #affichage
-    # vérif condition d'arrêt
+    if referendum(grille) <= 0:
+        break# vérif condition d'arrêt
     time.sleep(0.5)
