@@ -64,7 +64,7 @@ def loss_energy(grille) :
                 if case[0].type == "W" :
                     case[0].energy -= nrj_loss_wolf
                 elif case[0].type == "S" :
-                    case[0].type -= nrj_loss_sheep
+                    case[0].energy -= nrj_loss_sheep
 
 for i in range(500):
     loss_energy(grille)
