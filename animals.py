@@ -44,13 +44,10 @@ class Animals():
                 if voisin.type=="S":
                     self.eat(voisin, grille)
                     voisin.mort(grille)
-                
-        if self.type=="S":
-            print("je suis un mouton je mange personne")
 
     
     def eat(self, cible, grille):
-        grille.matrice[cible.position[0]][cible.position[1]]="."
+        grille.matrice[cible.position[0]][cible.position[1]][0].type = "."
         self.energy+=rd.randint(30,40)
 
     def reproduction(self, grille):
