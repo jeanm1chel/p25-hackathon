@@ -16,13 +16,7 @@ class Grille:
         return mat
 
 
-    def voisins(self, pos, categorie):
-        if categorie == "herbe":
-            i = 1
-        elif categorie == "animaux":
-            i = 0
-        else :
-            i = 42 #génère erreur
+    def voisins_a(self, pos):
         x,y = pos
         n = self.taille
         L = []
@@ -35,6 +29,33 @@ class Grille:
         if y < n-1:
             L.append(self.matrice[x][y+1][i])
         return L
+    
+    def voisins_h(self, pos) :
+        x,y = pos
+        n = self.taille
+        L = [] # liste des coordonées voisins
+        G = [] # liste des coordonées où il y a de l'herbe
+        if x > 0 :
+            if self.matrice[x-1][y][1] == "#":
+                G.append((x-1, y))
+            else :
+                L.append((x-1, y))
+        if x < n-1:
+            if self.matrice[x+1][y][1] == "#" :
+                G.append((x+1,y))
+            else :
+                L.append((x+1,y))
+        if y > 0:
+            if self.matrice[x][y-1][1] == "#" :
+                G.append((x, y-1))
+            else :
+                L.append((x, y-1))
+        if y < n-1:
+            if self.matrice[x][y+1][1] == "#" :
+                G.append((x, y+1))
+            else :
+                L.append((x,y+1))
+        return (L,G)
     
     def afficher(self):
         text = ""
