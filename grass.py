@@ -34,7 +34,7 @@ class Grass:
         for i in range(len(self.herbe)) :
             x = self.herbe[i][0]
             y = self.herbe[i][1]
-            if grille.matrice[x, y, 0] == "S" :
+            if grille.matrice[x][y][0] == "S" :
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 
