@@ -30,10 +30,10 @@ class Grille:
         for ligne in self.matrice:
             for case in ligne :
                 if case[0].type != "." :
-                    text += case[0].type
+                    text += " " + case[0].type + " "
                 elif case[1] == "#" :
-                    text += case[1]
+                    text += " " + case[1] + " "
                 else :
-                    text += "."
+                    text += " . "
             text += "\n"
         print(text)
