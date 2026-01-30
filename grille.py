@@ -22,11 +22,11 @@ class Grille:
         L = []
         if x > 0 :
             L.append(self.matrice[x-1][y])
-        if x < n:
+        if x < n-1:
             L.append(self.matrice[x+1][y])
         if y > 0:
             L.append(self.matrice[x][y-1])
-        if y < n:
+        if y < n-1:
             L.append(self.matrice[x][y+1])
         return L
     
