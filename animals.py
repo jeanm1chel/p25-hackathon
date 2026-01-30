@@ -10,7 +10,7 @@ class Animals():
         self.energy=0
 
     def move(self, grille):
-        voisins=grille.voisins(self.position)
+        voisins=grille.voisins(self.position, "animaux")
         if self.type=="W":
             if "S" in voisins:
                 for voisin in voisins:
