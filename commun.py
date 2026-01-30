@@ -12,6 +12,8 @@ prob_pousse = 0.05
 temps_repousse = 7
 age_limite_mouton = 50
 age_limite_loup = 40
+nrj_loss_sheep = 1
+nrj_loss_wolf = 2
 
 grille = Grille(n)
 grass = Grass(prob_pousse, temps_repousse)
@@ -26,18 +28,33 @@ def chasse(grille):
             for case in ligne:
                   case[0].eat_around(grille)
 
-def vieillissement_et_mort(grille) :
+def vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) :
     for ligne in grille.matrice :
         for case in ligne :
             if case[0].type != "." :
                 case[0].age += 1
-                if case[0].age == age_limite_loup and case[0].type == "W" :
+                if (case[0].age == age_limite_loup or case[0].energy <= 0) and case[0].type == "W" :
                     case[0].type = "."
+                    case[0].energy = 0
+                    case[0].age = 0
+                elif (case[0].age == age_limite_mouton or case[0].energy <= 0) and case[0].type == "S"
+                    case[0].type = "."
+                    case[0].energy = 0
+                    case[0].age = 0
+
+def loss_energy(grille) :
+    for ligne in grille.matrice:
+            for case in ligne:
+                if case[0].type == "W" :
+                    case[0].energy -= nrj_loss_wolf
+                elif case[0].type == "S" :
+                    case[0].type -= nrj_loss_sheep
+                
 
 grass.initialisation(grille)
 
 for i in range(500):
-    
+    loss_energy(grille)
     grass.nouvelle_herbe(grille)#MAJ herbe
     grass.repousse_herbe(grille)
     mouvements(grille) # mouton #loups
