@@ -4,11 +4,12 @@ from animals import Animals
 class Grille:
     def __init__(self, n) :
         self.taille = n
-        self.grille = np.empty((n,n,2))
-        for ligne in self.grille:
-            for case in ligne:
-                case[0] = Animals()
-                case[1] = "."
+        self.matrice = []
+        for i in  range(n):
+            ligne = []
+            for j in range(n):
+                ligne.append([Animals(), "."])
+            self.matrice.append(ligne)
     
     def voisin(self, pos):
         x,y = pos
@@ -25,7 +26,7 @@ class Grille:
     
     def afficher(self):
         text = ""
-        for ligne in self.grille:
+        for ligne in self.matrice:
             for case in ligne :
                 if case[0].type != "." :
                     text += case[0].type

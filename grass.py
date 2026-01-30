@@ -3,7 +3,7 @@ import random as rd
 
 class Grass:
     def __init__(self, Grille, prob_pousse, temps_repousse) :
-        self.Grille = Grille
+        self.Grille = Grille #WTF
         self.herbe = []
         self.prob_pousse = prob_pousse
         self.temps_repousse = temps_repousse
@@ -20,7 +20,8 @@ class Grass:
                 C += 1
                 self.Grille.grille[x,y,1] = "#"
         
-    def nouvelle_herbe(self) :
+    def nouvelle_herbe(self, grille) :
+        n = grille.taille
         for i in range(n) :
             for j in range(n) :
                 if (i,j) not in (self.herbe and self.herbe_mangé) :
@@ -33,7 +34,7 @@ class Grass:
         for i in range(len(self.herbe)) :
             x = self.herbe[i][0]
             y = self.herbe[i][1]
-            if self.Grille.grille[x, y, 0] = "S" :
+            if Grille.grille[x, y, 0] == "S" :
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 
