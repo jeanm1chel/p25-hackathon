@@ -25,5 +25,5 @@ def afficher(grille, n):
                     ligne += "."
                 else:
                     ligne += animal.type
-                    
+
         print(ligne)
