@@ -30,7 +30,7 @@ class Grass:
                         self.append((i,j))
                         grille.matrice[i,j,1] = "#"
 
-    def mangé(self) :
+    def mangé(self, grille) :
         for i in range(len(self.herbe)) :
             x = self.herbe[i][0]
             y = self.herbe[i][1]
