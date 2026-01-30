@@ -4,13 +4,18 @@ from animals import Animals
 class Grille:
     def __init__(self, n) :
         self.taille = n
-        self.matrice = []
-        for i in  range(n):
-            ligne = []
+        self.matrice = [[[Animals(), "."] for _ in range(n)] for _ in range(n)]
+
+        
+    def mattoshow(self):
+        n=self.taille
+        mat=[[[0,0] for _ in range (n)] for _ in range (n)]
+        for i in range(n):
             for j in range(n):
-                ligne.append([Animals(), "."])
-            self.matrice.append(ligne)
-    
+                mat[i][j]=[self.matrice[i][j][0].type, self.matrice[i][j][1]]
+        return mat
+
+
     def voisins(self, pos):
         x,y = pos
         n = self.taille

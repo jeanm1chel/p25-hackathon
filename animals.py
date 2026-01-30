@@ -62,28 +62,30 @@ class Animals():
                     grille.grille[voisin.position]=voisin
 
 
-    def animals_initialize(grille_vide, n_W=10, n_S=50):
-        li_xy=[]
-        for i in range(np.shape(grille_vide)[0]):
-            for j in range( np.shape(grille_vide)[1]):
-                li_xy.append(i,j)
-        n=np.shape(grille_vide)[0]*np.shape(grille_vide)[1]
-        for _ in range (n_W):
-            pos=li_xy[rd.randint(0,n)]
-            grille_vide[pos[0]][pos[1]].type="W"
-            grille_vide[pos[0]][pos[1]].position=pos
-            grille_vide[pos[0]][pos[1]].energy=40
-            grille_vide[pos[0]][pos[1]].age=0
-            li_xy.remove(pos)
-            n-=1
-        for _ in range (n_S):
-            pos=li_xy[rd.randint(0,n)]
-            grille_vide[pos[0]][pos[1]].type="W"
-            grille_vide[pos[0]][pos[1]].position=pos
-            grille_vide[pos[0]][pos[1]].energy=40
-            grille_vide[pos[0]][pos[1]].age=0
-            li_xy.remove(pos)
-            n-=1
+def animals_initialize(grille_vide, n_W=10, n_S=50):
+    li_xy=[]
+    for i in range(np.shape(grille_vide)[0]):
+        for j in range( np.shape(grille_vide)[1]):
+            li_xy.append((i,j))
+    print(li_xy)
+    n=np.shape(grille_vide)[0]*np.shape(grille_vide)[1]
+    for _ in range (n_W):
+        pos=li_xy[rd.randint(0,n-1)]
+        grille_vide[pos[0]][pos[1]][0].type="W"
+        grille_vide[pos[0]][pos[1]][0].position=pos
+        grille_vide[pos[0]][pos[1]][0].energy=40
+        grille_vide[pos[0]][pos[1]][0].age=0
+        li_xy.remove(pos)
+        n-=1
+    for _ in range (n_S):
+        pos=li_xy[rd.randint(0,n-1)]
+        grille_vide[pos[0]][pos[1]][0].type="S"
+        grille_vide[pos[0]][pos[1]][0].position=pos
+        grille_vide[pos[0]][pos[1]][0].energy=40
+        grille_vide[pos[0]][pos[1]][0].age=0
+        li_xy.remove(pos)
+        n-=1
         
+    return(grille_vide)
         
             
