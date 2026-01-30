@@ -6,6 +6,7 @@ import time
 from animals import Animals, animals_initialize
 from grass import Grass
 from grille import Grille
+from affichage import afficher
 
 n = 10
 prob_pousse = 0.05
@@ -74,7 +75,8 @@ for i in range(500):
     chasse(grille) #loups
     vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) #incrémenter age  #vérif morts
     naissances(grille) #reprod
-    grille.afficher() #affichage
+    afficher(grille, grille.taille) #affichage
+    print("\n_------------------ Tour ", i, " ------------------_\n")
     if referendum(grille) <= 0:
         break# vérif condition d'arrêt
     time.sleep(0.5)
