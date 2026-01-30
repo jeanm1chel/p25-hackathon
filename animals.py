@@ -64,7 +64,7 @@ class Animals():
                         self.energy-=20
                         grille.grille[voisin[0].position]=voisin
                         break
-        if self.type = "S":
+        if self.type == "S":
             if self.energy > 50:
                 for voisin in voisins:
                     if voisin == ".":
