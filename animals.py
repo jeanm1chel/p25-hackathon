@@ -34,26 +34,24 @@ class Animals():
         self.type="."
         self.age=0
         self.energy=0
-        grille.grille[self.position]=self
+        x, y = self.position
+        grille.matrice[x][y][0]=self
 
     def eat_around(self, grille):
-        voisins=grille.voisins(self.position)
+        voisins=grille.voisins(self.position, "animaux")
         if self.type=="W":
             for voisin in voisins:
-                if voisin[0].type=="S":
-                    self.eat(voisin)
-                    voisin[0].mort(grille)
-                
-        if self.type=="S":
-            print("je suis un mouton je mange personne")
+                if voisin.type=="S":
+                    self.eat(voisin, grille)
+                    voisin.mort(grille)
 
     
     def eat(self, cible, grille):
-        grille.matrice[cible.position[0]][cible.position[1]]="."
+        grille.matrice[cible.position[0]][cible.position[1]][0].type = "."
         self.energy+=rd.randint(30,40)
 
     def reproduction(self, grille):
-        voisins=grille.voisins(self.position)[0]
+        voisins=grille.voisins(self.position, 'animaux')
         if self.type == "W":
             if self.energy > 80:
                 for voisin in voisins:
