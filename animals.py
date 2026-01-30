@@ -51,15 +51,27 @@ class Animals():
         self.energy+=rd.randint(30,40)
 
     def reproduction(self, grille):
-        voisins=grille.voisins(self.position)
-        if self.energy > 80:
-            for voisin in voisins:
-                if voisin == ".":
-                    voisin.type="W"
-                    voisin.age=0
-                    voisin.energy=20
-                    self.energy-=20
-                    grille.grille[voisin.position]=voisin
+        voisins=grille.voisins(self.position)[0]
+        if self.type == "W"
+            if self.energy > 80:
+                for voisin in voisins:
+                    if voisin == ".":
+                        voisin.type="W"
+                        voisin.age=0
+                        voisin.energy=20
+                        self.energy-=20
+                        grille.grille[voisin[0].position]=voisin
+                        break
+        if self.type = "S":
+            if self.energy > 50:
+                for voisin in voisins:
+                    if voisin == ".":
+                        voisin.type="S"
+                        voisin.age=0
+                        voisin.energy=20
+                        self.energy-=20
+                        grille.grille[voisin.position]=voisin
+                        break
 
 
 def animals_initialize(grille_vide, n_W=10, n_S=50):

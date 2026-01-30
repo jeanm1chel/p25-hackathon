@@ -7,8 +7,8 @@ def afficher(grille, n):
 
         for j in range(n):
 
-            animal = grille.grille[i][j][0]   # objet a
-            herbe  = grille.grille[i][j][1]   # "#" ou "."
+            animal = grille.matrice[i][j][0]   # objet a
+            herbe  = grille.matrice[i][j][1]   # "#" ou "."
 
             #CASE AVEC HERBE
             if herbe == "#":
