@@ -23,7 +23,15 @@ class Grille:
         return L
     
     def afficher(self):
-        for ligne in self:
-            text = ""
-            for case in ligne:
-                text.append
+        text = ""
+        for ligne in self.grille:
+            for case in ligne :
+                if case[0].type != "." :
+                    text += case[0].type
+                elif case[1] == "#" :
+                    text += case[1]
+                else :
+                    text += "."
+            text += "\n"
+        print text
+                
