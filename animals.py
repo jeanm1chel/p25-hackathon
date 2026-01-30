@@ -1,10 +1,11 @@
-import random
+import random as rd 
+import numpy as np
 grille=[]
 
 class Animals():
 
     def __init__(self,grille):
-        self.type="W"
+        self.type="."
         self.position=(0,0)
         self.age=0
         self.energy=0
@@ -18,11 +19,11 @@ class Animals():
                         self.position=voisin.position
                         break
             else :
-                n=random.randint(len(voisins))
+                n=rd.randint(len(voisins))
                 self.position=voisins[n].position
 
         if self.type=="S":
-            n=random.randint(len(voisins))
+            n=rd.randint(len(voisins))
             self.position=voisins[n].position
 
     def eat_around(self):
@@ -37,7 +38,7 @@ class Animals():
     
     def eat(self, cible):
         grille.grille[cible.position[0]][cible.position[1]]="."
-        self.energy+=random.randint(30,40)
+        self.energy+=rd.randint(30,40)
 
     def reproduction(self):
         voisins=grille.voisins(self.position)
@@ -50,3 +51,28 @@ class Animals():
     
 
 
+    def animals_initialize(grille_vide, n_W=10, n_S=50):
+        li_xy=[]
+        for i in range np.shape(grille_vide)[0]:
+            for j in range np.shape(grille_vide)[1]:
+                li_xy.append(i,j)
+        n=np.shape(grille_vide)[0]*np.shape(grille_vide)[1]
+        for _ in range (n_W):
+            pos=li_xy[rd.randint(0,n)]
+            grille_vide[pos[0]][pos[1]].type="W"
+            grille_vide[pos[0]][pos[1]].position=pos
+            grille_vide[pos[0]][pos[1]].energy=40
+            grille_vide[pos[0]][pos[1]].age=0
+            li_xy.remove(pos)
+            n-=1
+        for _ in range (n_S)
+            pos=li_xy[rd.randint(0,n)]
+            grille_vide[pos[0]][pos[1]].type="W"
+            grille_vide[pos[0]][pos[1]].position=pos
+            grille_vide[pos[0]][pos[1]].energy=40
+            grille_vide[pos[0]][pos[1]].age=0
+            li_xy.remove(pos)
+            n-=1
+        
+        
+            
