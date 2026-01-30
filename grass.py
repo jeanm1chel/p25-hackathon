@@ -38,7 +38,6 @@ class Grass:
                 self.herbe_mangé[(x,y)] = 0
                 self.herbe.pop(i)
                 
-
     def repousse_herbe(self) : #le faire tout à la fin car réinitialise direct pour le prochain
         for c in self.herbe_mangé :
             self.herbe_mangé[c] += 1
