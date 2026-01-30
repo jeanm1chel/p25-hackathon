@@ -15,9 +15,7 @@ class Grass:
         while C < nb_grass :
             x = rd.randint(0, len(self.grille))
             y = rd.randint(0, len(self.grille))
-            if (x,y) in self.coord :
-                C += 0
-            else :
+            if (x,y) not in self.coord :
                 self.herbe.append((x,y))
                 C += 1
                 self.Grille.grille[x,y,1] = "#"
