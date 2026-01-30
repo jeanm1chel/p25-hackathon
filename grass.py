@@ -20,7 +20,7 @@ class Grass:
             else :
                 self.herbe.append((x,y))
                 C += 1
-                self.Grille.grille[x,y] = "G"
+                self.Grille.grille[x,y,1] = "G"
         
     def nouvelle_herbe(self) :
         for i in range(n) :
@@ -29,16 +29,16 @@ class Grass:
                     0 = 0
                 else :
                     m = rd.uniform()
-                        if m < prob_repousse :
-                            self.append((i,j))
-                            self.Grille.grille[i,j] = "G"
+                    if m < self.prob_repousse :
+                        self.append((i,j))
+                        self.Grille.grille[i,j,1] = "G"
 
     def repousse_herbe(self) : #le faire tout à la fin car réinitialise direct pour le prochain
         for c in self.herbe_mangé :
             self.herbe_mangé[c] += 1
-            if self.herbe_mangé = temps_repousse :
+            if self.herbe_mangé == self.temps_repousse :
                 self.herbe.append(c)
-                self.Grille.grille[c[0], c[1]] = "G"
+                self.Grille.grille[c[0], c[1],1] = "G"
                 del self.herbe_mangé[c]
             
 

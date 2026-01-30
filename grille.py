@@ -2,8 +2,12 @@ import numpy as np
 
 class Grille:
     def __init__(self, n) :
-        self.grille = np.empty((n,n,2))
         self.taille = n
+        self.grille = np.empty((n,n,2))
+        for ligne in self:
+            for case in ligne:
+                case[0] = animals()
+                case[1] = grass()
     
     def voisin(self, pos):
         x,y = pos
