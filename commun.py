@@ -1,6 +1,7 @@
 import numpy as np
 import math
 import random as rd
+import time
 
 from animals import Animals
 from grass import Grass
@@ -36,11 +37,13 @@ def vieillissement_et_mort(grille) :
 grass.initialisation(grille)
 
 for i in range(500):
-    #incrémenter age
-    #MAJ herbe
+    
+    grass.nouvelle_herbe(grille)#MAJ herbe
+    grass.repousse_herbe(grille)
     mouvements(grille) # mouton #loups
     chasse(grille) #loups
-    vieillissement_et_mort(grille) #vérif morts
+    vieillissement_et_mort(grille) #incrémenter age  #vérif morts
     #reprod
     grille.afficher() #affichage
     # vérif condition d'arrêt
+    time.sleep(0.5)
