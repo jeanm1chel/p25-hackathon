@@ -7,6 +7,7 @@ class Grille:
         for ligne in self:
             for case in ligne:
                 case[0] = animals()
+                case[0].type = "."
                 case[1] = "."
     
     def voisin(self, pos):
