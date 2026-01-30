@@ -10,7 +10,7 @@ class Animals():
         self.energy=0
 
     def move(self, grille):
-        voisins=grille.voisins(self.position)
+        voisins=grille.voisins(self.position, "animaux")
         if self.type=="W":
             if "S" in voisins:
                 for voisin in voisins:
@@ -20,13 +20,13 @@ class Animals():
                         break
             else :
                 n=rd.randint(0, len(voisins)-1)
-                x, y = voisins[n][0].position
+                x, y = voisins[n].position
                 self.position = (x, y)
                 grille.matrice[x][y][0]=self
 
         if self.type=="S":
             n=rd.randint(0,len(voisins)-1)
-            x, y = voisins[n][0].position
+            x, y = voisins[n].position
             self.position = (x, y)
             grille.matrice[x][y][0]=self
 
@@ -34,34 +34,44 @@ class Animals():
         self.type="."
         self.age=0
         self.energy=0
-        grille.grille[self.position]=self
+        x, y = self.position
+        grille.matrice[x][y][0]=self
 
     def eat_around(self, grille):
-        voisins=grille.voisins(self.position)
+        voisins=grille.voisins(self.position, "animaux")
         if self.type=="W":
             for voisin in voisins:
-                if voisin[0].type=="S":
-                    self.eat(voisin[0])
-                    voisin[0].mort(grille)
-                
-        if self.type=="S":
-            print("je suis un mouton je mange personne")
+                if voisin.type=="S":
+                    self.eat(voisin, grille)
+                    voisin.mort(grille)
 
     
     def eat(self, cible, grille):
-        grille.matrice[cible.position[0]][cible.position[1]]="."
+        grille.matrice[cible.position[0]][cible.position[1]][0].type = "."
         self.energy+=rd.randint(30,40)
 
     def reproduction(self, grille):
-        voisins=grille.voisins(self.position)
-        if self.energy > 80:
-            for voisin in voisins:
-                if voisin == ".":
-                    voisin.type="W"
-                    voisin.age=0
-                    voisin.energy=20
-                    self.energy-=20
-                    grille.grille[voisin.position]=voisin
+        voisins=grille.voisins(self.position, 'animaux')
+        if self.type == "W":
+            if self.energy > 80:
+                for voisin in voisins:
+                    if voisin == ".":
+                        voisin.type="W"
+                        voisin.age=0
+                        voisin.energy=20
+                        self.energy-=20
+                        grille.grille[voisin[0].position]=voisin
+                        break
+        if self.type == "S":
+            if self.energy > 50:
+                for voisin in voisins:
+                    if voisin == ".":
+                        voisin.type="S"
+                        voisin.age=0
+                        voisin.energy=20
+                        self.energy-=20
+                        grille.grille[voisin.position]=voisin
+                        break
 
 
 def animals_initialize(grille_vide, n_W=10, n_S=50):
