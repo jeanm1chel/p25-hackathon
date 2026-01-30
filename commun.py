@@ -53,7 +53,7 @@ def vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) :
                     case[0].type = "."
                     case[0].energy = 0
                     case[0].age = 0
-                elif (case[0].age == age_limite_mouton or case[0].energy <= 0) and case[0].type == "S"
+                elif (case[0].age == age_limite_mouton or case[0].energy <= 0) and case[0].type == "S":
                     case[0].type = "."
                     case[0].energy = 0
                     case[0].age = 0
