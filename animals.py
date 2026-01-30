@@ -25,8 +25,6 @@ class Animals():
             n=random.randint(len(voisins))
             self.position=voisins[n].position
 
-
-
     def eat_around(self):
         voisins=grille.voisins(self.position)
         if self.type=="W":
@@ -48,5 +46,7 @@ class Animals():
                 if voisin == ".":
                     voisin.type="W"
                     grille.update(voisin)
+    
+    
 
 
