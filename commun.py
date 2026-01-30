@@ -6,6 +6,8 @@ import time
 from animals import Animals, animals_initialize
 from grass import Grass
 from grille import Grille
+from affichage import afficher
+
 
 n = 10
 prob_pousse = 0.05
@@ -24,11 +26,6 @@ def mouvements(grille):
     for ligne in grille.matrice:
             for case in ligne:
                   case[0].move(grille)
-
-def chasse(grille):
-    for ligne in grille.matrice:
-            for case in ligne:
-                  case[0].eat_around(grille)
 
 def naissances(grille):
     for ligne in grille.matrice:
@@ -69,11 +66,11 @@ for i in range(500):
     loss_energy(grille)
     grass.nouvelle_herbe(grille)#MAJ herbe
     grass.repousse_herbe(grille)
-    mouvements(grille) # mouton #loups
-    chasse(grille) #loups
+    mouvements(grille) # mouton
     vieillissement_et_mort(grille, age_limite_loup, age_limite_mouton) #incrémenter age  #vérif morts
     naissances(grille) #reprod
-    grille.afficher() #affichage
+    afficher(grille, grille.taille) #affichage
+    print("\n_------------------ Tour ", i, " ------------------_\n")
     if referendum(grille) <= 0:
         break# vérif condition d'arrêt
     time.sleep(0.5)

@@ -10,25 +10,39 @@ class Animals():
         self.energy=0
 
     def move(self, grille):
-        voisins=grille.voisins(self.position, "animaux")
+        voisins_a = grille.voisins_a(self.position)
+        voisins_h = grille.voisins_h(self.position)
+        a, b = self.position[0], self.position[1]
         if self.type=="W":
-            if "S" in voisins:
-                for voisin in voisins:
+            if "S" in voisins_a:
+                for voisin in voisins_a:
                     if voisin.type=="S":
                         self.position=voisin.position
-                        grille.grille[voisin.position]=self
+                        grille.matrice[voisin.position]=self
+                        grille.matrice[a][b][0] = Animals()
                         break
+
             else :
-                n=rd.randint(0, len(voisins)-1)
-                x, y = voisins[n].position
+                n=rd.randint(0, len(voisins_a)-1)
+                x, y = voisins_a[n].position
                 self.position = (x, y)
                 grille.matrice[x][y][0]=self
+                grille.matrice[a][b][0] = Animals()
 
         if self.type=="S":
-            n=rd.randint(0,len(voisins)-1)
-            x, y = voisins[n].position
-            self.position = (x, y)
-            grille.matrice[x][y][0]=self
+            if len(voisins_h[1]) != 0 :
+                n = rd.randint(0,len(voisins_h[1])-1)
+                x, y = voisins_h[1][n][0], voisins_h[1][n][1]
+                self.position = (x, y)
+                grille.matrice[x][y][0]=self
+                grille.matrice[a][b][0] = Animals()
+
+            else :
+                n = rd.randint(0,len(voisins_h[0])-1)
+                x, y = voisins_h[0][n][0], voisins_h[0][n][1]
+                self.position = (x, y)
+                grille.matrice[x][y][0]=self
+                grille.matrice[a][b][0] = Animals()
 
     def mort(self, grille):
         self.type="."
@@ -37,21 +51,8 @@ class Animals():
         x, y = self.position
         grille.matrice[x][y][0]=self
 
-    def eat_around(self, grille):
-        voisins=grille.voisins(self.position, "animaux")
-        if self.type=="W":
-            for voisin in voisins:
-                if voisin.type=="S":
-                    self.eat(voisin, grille)
-                    voisin.mort(grille)
-
-    
-    def eat(self, cible, grille):
-        grille.matrice[cible.position[0]][cible.position[1]][0].type = "."
-        self.energy+=rd.randint(30,40)
-
     def reproduction(self, grille):
-        voisins=grille.voisins(self.position, 'animaux')
+        voisins=grille.voisins_a(self.position)
         if self.type == "W":
             if self.energy > 80:
                 for voisin in voisins:
