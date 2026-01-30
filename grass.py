@@ -25,9 +25,9 @@ class Grass:
         for i in range(n) :
             for j in range(n) :
                 if (i,j) not in (self.herbe and self.herbe_mangé) :
-                    m = rd.uniform()
-                    if m < self.prob_repousse :
-                        self.append((i,j))
+                    m = rd.uniform(0,1)
+                    if m < self.prob_pousse :
+                        self.herbe.append((i,j))
                         grille.matrice[i][j][1] = "#"
 
     def mangé(self, grille) :
