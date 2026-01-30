@@ -20,7 +20,6 @@ grass = Grass(prob_pousse, temps_repousse)
 grass.initialisation(grille)
 grille.matrice= animals_initialize(grille.matrice)
 
-
 def mouvements(grille):
     for ligne in grille.matrice:
             for case in ligne:
